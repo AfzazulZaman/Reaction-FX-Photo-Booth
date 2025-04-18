@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ProLogo Generator</title>
+  <style>
+    body { font-family: Arial; background: #f5f9ff; text-align: center; }
+    .container { max-width: 600px; margin: auto; padding: 20px; }
+    input, select, button { margin: 10px; padding: 10px; width: 90%; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ProLogo Generator</h1>
+    <form action="/generate" method="post">
+      <input type="text" name="company_name" placeholder="Company Name" required>
+      <input type="text" name="tagline" placeholder="Tagline (optional)">
+      <input type="color" name="primary_color" value="#4a6fa5"> Primary Color<br>
+      <input type="color" name="secondary_color" value="#166088"> Secondary Color<br>
+      <select name="font_style">
+        <option value="sans-serif">Sans-serif</option>
+        <option value="serif">Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="display">Display</option>
+        <option value="handwriting">Handwriting</option>
+      </select>
+      <select name="icon_choice">
+        <option value="abstract">Abstract</option>
+        <option value="geometric">Geometric</option>
+        <option value="letter-based">Letter-based</option>
+        <option value="minimal">Minimal</option>
+        <option value="tech">Tech</option>
+      </select>
+      <button type="submit">Generate Logo</button>
+    </form>
+
+    {% if logo_image %}
+    <div>
+      <h2>Your Logo</h2>
+      <img src="data:image/png;base64,{{ logo_image }}" alt="Generated Logo" width="400">
+      <br><br>
+      <a href="/download">Download PNG</a>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
